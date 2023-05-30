@@ -22,3 +22,12 @@ plt.plot(t[:400],x[:400])
 plt.subplot(212)
 plt.plot(t[:400],x_wn[:400])
 plt.show()
+
+##########確認コード（解説）##########
+
+plt.plot(t,x_wn,label='mixture')
+plt.plot(t,x,label='sine wave')
+plt.plot(t,wn,label='white noise')
+plt.xlim(0,10/fs)
+plt.legend()
+plt.show()

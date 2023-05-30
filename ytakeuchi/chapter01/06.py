@@ -22,3 +22,17 @@ x=A*np.sin(2*np.pi*f*t)
 wn=np.random.normal(0,1,fs*s+1)
 
 print(calc_SN(x,wn))
+
+##########確認コード（解説）##########
+
+A=1
+f=440
+fs=16000
+s=3
+
+t=np.arange(0,s+1/fs,1/fs)
+x=A*np.sin(2*np.pi*f*t)
+x2=10*A*np.sin(2*np.pi*f*t)
+
+print(calc_SN(x,x)) #0になるはず
+print(calc_SN(x,x2)) #-20になるはず

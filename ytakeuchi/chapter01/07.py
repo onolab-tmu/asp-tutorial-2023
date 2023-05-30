@@ -2,8 +2,10 @@ import numpy as np
 
 def add_SN(s,snr):
     v=np.sqrt(sum(s**2)/len(s)*10**(-snr/10))
-    wn=np.random.normal(0,v,len(s))
-    return s+wn
+    # wn=np.random.normal(0,v,len(s))
+    # return s+wn
+    wn=np.random.normal(0,1,len(s))
+    return s+v*wn
 
 ##########確認コード##########
 
