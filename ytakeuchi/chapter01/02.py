@@ -24,4 +24,4 @@ plt.show()
 ##########確認コード（解説）##########
 
 print(sf.info("ch01_2.wav")) #ファイル名を指定すると情報を取得できる
-IPython.display.Audio(x,rate=fs) #notebookのときは直接埋め込める
+#IPython.display.Audio(x,rate=fs) #notebookのときは直接埋め込める
