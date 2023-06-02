@@ -55,14 +55,14 @@ noise_down = mixture_down - signal_down   # 間引きした信号のうち，雑
 
 
 #10
-def MAF(x, M):
+def MAF(x, M):   # M点移動平均．5点の場合はM=5．
     y = np.zeros(len(x))
-    for i in range(M, len(x)-M):
-        y[i] = np.mean(x[i-M:i+M])
+    for i in range(int(M/2), len(x)-int(M/2)):
+        y[i] = np.mean(x[i-int(M/2):i+int(M/2)+1])
     return y
 
 t_down = np.arange(len(mixture_down))
-mixture_down_5p_MA = MAF(mixture_down, 2)        #mixture_downは元の信号．y3は5点移動平均フィルタを適用した信号．
+mixture_down_5p_MA = MAF(mixture_down, 5)        #mixture_downは元の信号．y3は5点移動平均フィルタを適用した信号．
 
 plt.figure()
 plt.subplot(1,2,1)
