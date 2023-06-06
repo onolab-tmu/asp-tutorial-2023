@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 x, _ = sf.read("09.wav")
 
 # 移動平均
-y = np.convolve(x, np.ones(5), mode="valid") / 5
+y = np.convolve(x, np.ones(5), mode="same") / 5
 
 plt.subplot(2, 1, 1)
 plt.plot(x)

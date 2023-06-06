@@ -7,10 +7,11 @@ f = 440
 fs = 16000
 sec = 3
 
-t = np.arange(0, sec, 1 / fs)
+t = np.arange(fs * sec) / fs
 
 x1 = A * np.sin(2 * np.pi * f * t)
 
-plt.xlim(0, 0.03)
+# 確認コード
+plt.xlim(0, 1 / f)
 plt.plot(t, x1)
 plt.show()
