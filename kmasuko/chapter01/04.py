@@ -2,19 +2,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import soundfile as sf
 
-noise_amp = 1
-fs = 16000
-sec = 3
 
 filepath = "noise.wav"
 _format = "WAV"
 subtype = "PCM_16"
 
+fs = 16000
+sec = 3
 t = np.arange(sec * fs) / fs
 
-noise = 2 * noise_amp * (np.random.rand(sec * fs)) - noise_amp
+noise = np.random.randn(sec * fs)
 
 plt.figure()
+plt.subplot(1, 2, 1)
 plt.plot(t, noise)
 plt.xlabel("Time [s]")
 plt.show()

@@ -2,33 +2,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def snRatio(s, x):
-    s_sum = np.sum(s**2)
-    x_sum = np.sum(x**2)
+def snRatio(signal, noise):
+    signal_power = np.sum(signal**2)
+    noise_power = np.sum(noise**2)
 
-    sn = 10 * np.log10(x_sum / s_sum)
+    sn = 10 * np.log10(signal_power / noise_power)
 
     return sn
 
 
-def geneMixSignal(x, sn):
-    x_sum = np.sum(x**2)
-    s_sum = x_sum / (10 ** (sn / 10))
+def geneMixSignal(signal, sn):
+    signal_power = np.sum(signal**2)
+    noise = np.random.randn(len(signal))
+    noise_power = np.sum(noise**2)
+    noise_coef = np.sqrt(signal_power / noise_power / 10 ** (sn / 10))
 
-    length = len(x)
+    noise = noise_coef * noise
+    print("snRatio: {}".format(snRatio(signal, noise)))
 
-    """ s_sum = len * E[noise^2], E[noise^2] = V[noise], V[noise] = (2 * noise_amp)^2 * V[rand] """
-    noise_amp = np.sqrt(3 * s_sum / length)
-    noise = 2 * noise_amp * (np.random.rand(length)) - noise_amp
+    mix = signal + noise
 
-    """
-    print("noise_amp: {}".format(noise_amp))
-    plt.figure()
-    plt.plot(np.arange(length), noise)
-    plt.show()
-    """
-
-    print("snRatio: {}".format(snRatio(noise, x)))
-
-    mix = x + noise
     return mix

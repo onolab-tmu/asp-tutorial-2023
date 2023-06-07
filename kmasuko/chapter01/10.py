@@ -4,6 +4,15 @@ import soundfile as sf
 import math
 
 
+def snRatio(signal, noise):
+    s_sum = np.sum(signal**2)
+    x_sum = np.sum(noise**2)
+
+    sn = 10 * np.log10(s_sum / x_sum)
+
+    return sn
+
+
 # 移動平均の補正
 def valid_convolve(x, n_filter):
     b = np.ones(n_filter) / n_filter
@@ -27,13 +36,12 @@ wave, samplerate = sf.read(filepath)
 
 amp = 1
 f = 440
-fs = 16000
+fs = 8000
 sec = 3
 t = np.arange(sec * fs) / fs
 x = np.cos(2 * np.pi * f * t)
 
 n_filter = 5
-flt = np.ones(n_filter) / n_filter
 
 t_5mean = np.arange(len(wave)) / samplerate
 wave_5mean = valid_convolve(wave, n_filter)
@@ -47,3 +55,6 @@ plt.xlabel("Time [s]")
 plt.xlim(0, 0.01)
 plt.legend()
 plt.show()
+
+
+print("SNR : {}".format(snRatio(x, wave_5mean - x)))

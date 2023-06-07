@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import soundfile as sf
 
+
 amp = 1
-noise_amp = 1
 f = 440
 fs = 16000
 sec = 3
@@ -14,7 +14,7 @@ subtype = "PCM_16"
 
 t = np.arange(sec * fs) / fs
 
-noise = 2 * noise_amp * (np.random.rand(sec * fs)) - noise_amp
+noise = np.random.randn(sec * fs)
 y = amp * np.cos(2 * np.pi * f * t)
 
 mix = y + noise

@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import soundfile as sf
 
+
 save_filepath = "mix_downsample.wav"
 _format = "WAV"
 subtype = "PCM_16"
@@ -18,10 +19,13 @@ idx = fsRate * np.array([i for i in range(sec * fs)])
 wave_down = wave_mix[idx]
 
 plt.figure()
-plt.plot(t_down, wave_down, label="downsample")
 plt.plot(t_mix, wave_mix, label="mix_signal")
+plt.plot(t_down, wave_down, label="downsample")
 plt.xlim(0, 0.01)
 plt.legend()
 plt.show()
 
 sf.write(save_filepath, wave_down, fs, format=_format, subtype=subtype)
+
+print(wave_mix[0:9])
+print(wave_down[0:4])
