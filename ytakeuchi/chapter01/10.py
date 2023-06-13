@@ -16,7 +16,7 @@ m_sample=5
 m=m_sample//2
 
 for i in range(m,len(y)-m+1):
-    y[i]=np.mean(x[i-m:i+m])
+    y[i]=np.mean(x[i-m:i+m+1])
     
 plt.plot(t,x)
 plt.show()
