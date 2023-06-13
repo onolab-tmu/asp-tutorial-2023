@@ -8,4 +8,4 @@
 
 My repository -> `ytakeuchi/`
 
-[kibaco](`https://kibaco.tmu.ac.jp/portal`)
+[kibaco](https://kibaco.tmu.ac.jp/portal)
