@@ -1,16 +1,31 @@
 import numpy as np
-import q6
-import math 
+import matplotlib as plt
 
 
-def adj_snr(s,snr):
+# 入力したSN比に応じたノイズを重畳する関数
+def adj_snr(s, snr):
+    wn = np.random.randn(len(s))
+    wn = wn / np.sqrt(np.sum(wn**2))
+    wn = wn * np.sqrt(np.sum(s**2))
+    wn = wn * 10 ** (-snr / 20)
 
-    #入力したSN比に応じたノイズを重畳
+    return s + wn
 
-    n_white = np.random.rand(round(len(s)))
 
-    a=q6.get_snr(s,n_white)
-    n_adj=n_white*np.sqrt(a/10**(snr/10))
+#####確認コード#####
+A = 1
+f = 440
+Fs = 16000
+L = 3
+snr = 6
+t = np.array([i / Fs for i in range(L * Fs)])
+sinwave = A * np.sin(2 * np.pi * f * t)
+sin_white = adj_snr(sinwave, snr)
 
-    
-    return  s+n_adj
+
+def calc_SN(s, x):
+    return 10 * np.log10(sum(s**2) / sum(x**2))
+
+
+wn = sin_white - sinwave
+print("6dBになるように調整した結果、SNは", calc_SN(sinwave, wn), "[dB]になった")
