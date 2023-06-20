@@ -21,18 +21,18 @@ def make_sine(A, f, sec, fs):
 
 
 if __name__ == "__main__":
-
-    _, x = make_sine(A=1, f=440, sec=3, fs=16000)
+    fs = 16000
+    _, x = make_sine(A=1, f=440, sec=3, fs=fs)
 
     X = np.fft.fft(x)
-    n = np.arange(0, len(X))
+    n = np.arange(len(X)) / len(X) * fs
 
     fig = plt.figure(figsize=[6.0, 4.0], rasterized=True)
     ax1 = fig.add_subplot(2, 1, 1)
-    ax1.stem(20 * np.log10(np.abs(X)))
+    ax1.stem(n, 20 * np.log10(np.abs(X)))
     ax1.set_title("amplitude")
     ax2 = fig.add_subplot(2, 1, 2)
-    ax2.stem(20 * np.log10(np.angle(X)))
+    ax2.stem(n, np.angle(X))
     ax2.set_title("phase")
     fig.tight_layout()
     plt.savefig("q06.pdf")
