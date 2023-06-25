@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Optional, Union
+from typing import Union
 import numpy as np
 import soundfile as sf
 
@@ -21,7 +21,7 @@ def main(output_dir: Union[Path, str]):
 
 
 if __name__ == "__main__":
-    out_p = Path.cwd() / "02/outputs"
+    out_p = Path.cwd() / "outputs"
     if not out_p.exists():
         out_p.mkdir(parents=True)
 

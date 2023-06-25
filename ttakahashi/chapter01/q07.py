@@ -1,11 +1,9 @@
 from pathlib import Path
-from typing import Optional, Union
+from typing import Union
 import numpy as np
 import soundfile as sf
 
-
-def calc_snr(s, x):
-    return 10 * np.log10(np.sum(s**2) / np.sum(x**2))
+from q06 import calc_snr
 
 
 def adjust_snr(s, x, snr):
@@ -26,8 +24,8 @@ def main(input_dir_02: Union[Path, str], input_dir_04: Union[Path, str]):
 
 
 if __name__ == "__main__":
-    in_p_02 = Path.cwd() / "02/outputs"
-    in_p_04 = Path.cwd() / "04/outputs"
+    in_p_02 = Path.cwd() / "outputs"
+    in_p_04 = Path.cwd() / "outputs"
 
     main(in_p_02, in_p_04)
 

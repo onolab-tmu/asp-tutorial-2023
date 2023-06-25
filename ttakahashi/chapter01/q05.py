@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Optional, Union
+from typing import Union
 import numpy as np
 import matplotlib.pyplot as plt
 import soundfile as sf
@@ -8,12 +8,12 @@ import soundfile as sf
 config = {
     "figure.subplot.bottom": 0.15,
     "figure.subplot.left": 0.15,
-    "figure.figsize": [10.0, 8.0],
-    "font.size": 18.0,
-    # "font.family": "Times New Roman",
-    # "mathtext.fontset": "cm",
+    "figure.figsize": [10, 8],
+    "font.size": 24,
+    "font.family": "Times New Roman",
+    "mathtext.fontset": "cm",
     "legend.borderaxespad": 1,
-    # "lines.linewidth": 10,
+    "lines.linewidth": 2,
     "savefig.transparent": True,
 }
 
@@ -47,9 +47,9 @@ def main(input_dir_02: Union[Path, str], input_dir_04: Union[Path, str], output_
 
 
 if __name__ == "__main__":
-    in_p_02 = Path.cwd() / "02/outputs"
-    in_p_04 = Path.cwd() / "04/outputs"
-    out_p = Path.cwd() / "05/outputs"
+    in_p_02 = Path.cwd() / "outputs"
+    in_p_04 = Path.cwd() / "outputs"
+    out_p = Path.cwd() / "outputs"
     if not out_p.exists():
         out_p.mkdir(parents=True)
 
