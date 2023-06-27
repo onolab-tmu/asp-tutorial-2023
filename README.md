@@ -24,11 +24,11 @@
    $ git branch <user_name>/chapter<XX>
    ```
 4. コードを書く
-   ファイル名は `chapter<章番号>/<問題番号>.py` とし，章番号・問題番号は 1 始まりの 2 桁に揃えてください．
-   例：1 章の 1 個目 → `chapter01/01.py`
+   ファイル名は `chapter<章番号>/q<問題番号>.py` とし，**章番号・問題番号は 1 始まりの 2 桁**に揃えてください．
+   例：1 章の 1 個目 → `chapter01/q01.py`
 5. 新しく書いたコードを git の管理対象に追加する
    ```
-   $ git add ./<user_name>/chpaterXX/YYY.py
+   $ git add ./<user_name>/chpaterXX/qYY.py
    ```
 6. 変更を記録する
    コミットメッセージは「○ 章を追加」などわかりやすい文章にしてください．
