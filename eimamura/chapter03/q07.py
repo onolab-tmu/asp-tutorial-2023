@@ -9,7 +9,7 @@ def general_defference_equation_recursion(a, b, x):
     for n in range(N):
         y[n] = general_recursion(n, a, b, x)
 
-    return y
+    return y / a[0]
 
 
 def general_recursion(l, a, b, x):

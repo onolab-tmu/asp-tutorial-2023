@@ -2,23 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def defference_equation_recursion(x):
-    N = x.size
-    y = np.zeros(N)
-
-    for n in range(N):
-        y[n] = recursion(x, n)
-
-    return y
-
-
-def recursion(x, n):
-    if n == 0:
-        return 0.4 * x[n]
-    else:
-        return 0.3 * recursion(x, n - 1) + 0.4 * x[n]
-
-
 def frequency_response(a, b, omega):
     N = a.size
     M = b.size
@@ -35,7 +18,9 @@ def frequency_response(a, b, omega):
 N = 100
 a = np.zeros(N)
 a[0] = 1
-b = defference_equation_recursion(a)
+a[1] = -0.3
+b = np.zeros(10)
+b[0] = 0.4
 
 fs = 16000
 f = np.arange(N) / N * fs
@@ -46,7 +31,7 @@ for i in range(N):
     H[i] = frequency_response(a, b, omega[i])
 
 plt.subplot(2, 1, 1)
-plt.plot(np.abs(H))
+plt.plot(omega, np.abs(H))
 plt.subplot(2, 1, 2)
-plt.plot(np.angle(H))
+plt.plot(omega, np.angle(H))
 plt.show()
