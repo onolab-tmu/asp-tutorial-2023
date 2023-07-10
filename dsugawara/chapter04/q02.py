@@ -12,7 +12,6 @@ def flame_div(L, S, x):
         x_div: フレーム分割したx
     """
     x_pad = q01.padding(L, S, x)
-    print(x_pad)
     N = len(x_pad)
     T = ((N - L) // S) + 1
     x_div = np.empty([T, L])
