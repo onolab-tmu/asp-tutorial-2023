@@ -24,7 +24,7 @@ def get_progress():
             chapter_path = Path(user / f"chapter{chap+1:02d}")
 
             # user/chapterXX に含まれる .py ファイルをカウント
-            py_files = list(chapter_path.glob("[0-9][0-9].py"))
+            py_files = list(chapter_path.glob("q[0-9][0-9].py"))
 
             # 問題数は max_cnt が上限で、それ以上のファイル数が含まれる場合は max_cnt にする
             n_solved = min(len(py_files), max_cnt)
