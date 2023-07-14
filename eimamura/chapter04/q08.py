@@ -95,5 +95,6 @@ plt.figure(figsize=[6.0, 4.0])
 plt.plot(y1)
 plt.show()
 
+
 print(np.array([np.max(y), np.min(y)]))
 print(np.array([np.max(y1), np.min(y1)]))

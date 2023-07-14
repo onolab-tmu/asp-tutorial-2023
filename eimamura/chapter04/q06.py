@@ -11,6 +11,7 @@ def composite(S, w):
             if (l - m * S) >= 0 and L > (l - m * S):
                 a += w[l - m * S] ** 2
         ws[l] = w[l] / a
+
         a = 0
 
     return ws

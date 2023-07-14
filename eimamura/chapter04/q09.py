@@ -34,6 +34,7 @@ L = np.array([100, 200, 400, 800])
 for i in range(len(L)):
     S = L[i] // 2
     win = np.hamming(L[i])
+
     Chirp = stft(chirp, L[i], S, win)
 
     plt.subplot()

@@ -37,6 +37,7 @@ def calc_axis(X, fs, S):
 
     F = X.shape[0]
     T = X.shape[1]
+
     L = (F - 1) * 2
 
     axis_f = np.arange(0, F + 1) / F * fs / 2
