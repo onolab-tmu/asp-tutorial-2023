@@ -34,7 +34,6 @@ if __name__ == "__main__":
     import q01
 
     x_pad = q01.padding(L, S, x)
-    diff = np.sum(x_pad - y) ** 2
-    print(diff)
+    print(np.sum((x_pad - y) ** 2))
     # output
-    # 1.7240280002135247e-29
+    # 5.585221535385234e-29
