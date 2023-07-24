@@ -2,17 +2,13 @@ import numpy as np
 
 
 def array_vector(crd, theta, f):
-
     """アレイの座標からアレイマニフォールドベクトルを求める
-
     Args:
-        crd (ndarray): アレイの座標（3次元配列）
+        crd (ndarray): アレイの座標
         theta (int): 音源方向（y軸から反時計回りが正の向き）
         f (int): 周波数
-
     Return:
         amv: アレイマニフォールドベクトル
-
     """
     M = crd.shape[0]
     c = 334.0
