@@ -2,15 +2,11 @@ import numpy as np
 
 
 def scm(X):
-
     """空間相関行列（spatial correation matrix）を求める
-
     Args:
         X (ndarray): 複素数行列
-
     Return:
         R: 空間相関行列
-
     """
     M, F, T = X.shape
 

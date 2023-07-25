@@ -2,83 +2,65 @@ import numpy as np
 
 
 def padding(L, S, x):
-
-    """x[n]に零する詰めをする
-
+    """N点の信号xにゼロ詰めを行う
     Args:
-        L (int): 窓幅
-        S (int): シフト幅
-        x (ndarray): 信号（1次元配列）
-
-    Return:
-        ndarray: 零詰めされた信号
-
+        L(int): 窓幅
+        S(int): シフト幅
+        x(ndarray): 入力信号
+    Return
+        x_pad: ゼロ詰め後の信号
     """
-    x = np.pad(x, [L - S, L - S])
-    temp = S - (x.size % S)  # 末尾に詰める0の個数を求める
-    if x.size % S != 0:
-        x = np.pad(x, [0, temp])
-    return x
+
+    x_pad = np.pad(x, (L - S, L - S))
+    temp = S - len(x_pad) % S
+    x_pad = np.pad(x_pad, (0, temp))
+    return x_pad
 
 
-def frame_cut(L, S, x):
-
-    """x[n]をフレーム分割する
-
+def flame_div(L, S, x):
+    """N点の信号xをフレーム分割
     Args:
-        L (int): 窓幅
-        S (int): シフト幅
-        x (ndarray): 信号（1次元配列）
-
-    Returns:
-        ndarray: フレーム分割された信号
-
+        L(int): 窓幅
+        S(int): シフト幅
+        x(ndarray): 入力信号
+    Return
+        x_div: フレーム分割したx
     """
-    x = padding(L, S, x)
-    T = (x.size - L) // S + 1
-    xt = np.zeros((T, L), dtype=complex)
-    for t in range(T):
-        for l in range(L):
-            xt[t][l] = x[t * S + l]
-
-    return xt
-
-
-def stft(L, S, x, win):
-
-    """x[n]のSTFTを計算する
-
-    Args:
-        L (int): 窓幅
-        S (int): シフト幅
-        x (ndarray): 信号（1次元配列）
-        win (ndarray): 窓関数（1次元配列）
-
-    Returns:
-        ndarray: x[n]のSTFT
-
-    """
-    x_cut = frame_cut(L, S, x)
-    T = x_cut.shape[0]
-    X = np.empty((L // 2 + 1, T), dtype="complex")
-
+    x_pad = padding(L, S, x)
+    N = len(x_pad)
+    T = ((N - L) // S) + 1
+    x_div = np.empty([T, L])
     for t in range(0, T):
-        x_cut[t] = x_cut[t] * win
-        X[:, t] = np.fft.rfft(x_cut[t])
+        x_div[t] = x_pad[t * S : t * S + L]
+
+    return x_div
+
+
+def my_stft(L, S, x, win):
+    """短時間フーリエ変換
+    Args:
+        L(int): 窓幅
+        S(int): シフト幅
+        x(ndarray): 入力信号
+        w(ndarray): 窓関数
+    Return
+        X: 変換後の信号
+    """
+    x_div = flame_div(L, S, x)
+    T = x_div.shape[0]
+    X = np.empty([L // 2 + 1, T], dtype="complex")
+    for t in range(0, T):
+        X[:, t] = np.fft.rfft(x_div[t, :] * win)
 
     return X
 
 
 def scm(X):
-
     """空間相関行列（spatial correation matrix）を求める
-
     Args:
         X (ndarray): 複素数行列
-
     Return:
         R: 空間相関行列
-
     """
     M, F, T = X.shape
 
@@ -113,8 +95,8 @@ if __name__ == "__main__":
     S = 256  # シフト幅
     win = np.hanning(L)  # 窓関数
 
-    nA_stft = stft(L, S, nA, win)
-    nB_stft = stft(L, S, nB, win)
+    nA_stft = my_stft(L, S, nA, win)
+    nB_stft = my_stft(L, S, nB, win)
 
     R = scm(np.array([nA_stft, nB_stft]))
 

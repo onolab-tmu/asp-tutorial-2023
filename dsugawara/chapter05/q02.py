@@ -2,18 +2,14 @@ import numpy as np
 
 
 def circular_array_vector(r, M, theta, f):
-
     """円状アレイのアレイマニフォールドベクトルを求める
-
     Args:
         r (double): アレイ半径
         M (int): マイク数
         theta (int): 音源方向（y軸から反時計回りが正の向き）
         f (int): 周波数
-
     Return:
         amv: アレイマニフォールドベクトル
-
     """
     c = 334.0
     theta = np.pi / 2 + 2 * np.pi * (theta / 360)

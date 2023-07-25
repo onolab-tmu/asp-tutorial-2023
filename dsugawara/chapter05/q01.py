@@ -2,18 +2,14 @@ import numpy as np
 
 
 def linear_array_vector(d, M, theta, f):
-
     """直線状アレイのアレイマニフォールドベクトルを求める
-
     Args:
         d (double): アレイ間隔
         M (int): マイク数
         theta (int): 音源方向（y軸から反時計回りが正の向き）
         f (int): 周波数
-
     Return:
         amv: アレイマニフォールドベクトル
-
     """
     c = 334.0
     theta = np.pi / 2 + 2 * np.pi * (theta / 360)
