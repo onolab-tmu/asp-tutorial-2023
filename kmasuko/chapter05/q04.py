@@ -7,18 +7,12 @@ def spatial_corr(X: np.ndarray) -> np.ndarray:
     Arg:
         X (ndarray):複素スペクトル (M, freq, time)
     Return:
-        ndarray:空間相関行列 (M, M)
+        ndarray:空間相関行列 (freq, M, M)
     """
 
     M, f, T = X.shape
     R = np.sum(X[:, None, :, :] * X[None, :, :, :].conj(), axis=-1) / T
-    R = R.transpose((2, 1, 0))
-    """ R = []
-    for i in range(f):
-        s = np.zeros((M, M), dtype=complex)
-        for t in range(T):
-            s += X[:, i, t].reshape(M, 1) @ X[:, i, t].reshape(1, M).conj()
-        R.append(s / T) """
+    R = R.transpose((2, 0, 1))
 
     return R
 
