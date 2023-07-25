@@ -24,7 +24,7 @@ def stft(L, S, win, x):
 
     output = np.array(output, dtype="complex")
 
-    return output
+    return output.T
 
 
 if __name__ == "__main__":

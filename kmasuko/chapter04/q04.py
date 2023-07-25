@@ -19,17 +19,7 @@ if __name__ == "__main__":
     win_len = 1000
     hop_len = 500
     win = np.hamming(win_len)
-    # ff, tt, X = signal.stft(x, fs, window="hamm")
     X = stft(win_len, hop_len, win, x)
-    """
-    n = win_len
-    val = fs / n
-    N = n // 2 + 1
-    results = np.arange(0, N, dtype=int)
-    ff = results * val
-    tt = np.linspace(0, 0.1, X.shape[0])
-    tt, ff = np.meshgrid(tt, ff)
-    """
 
     tt = np.linspace(0, 0.1, X.shape[0])
     ff = np.linspace(0, fs / 2, X.shape[1])

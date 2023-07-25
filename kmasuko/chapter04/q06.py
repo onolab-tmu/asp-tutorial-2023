@@ -6,10 +6,10 @@ def istft(S, X):
     """
     逆短時間フーリエ変換を計算
     Args:
-        S(int):シフト幅
-        X(ndarray):複素スペクトル
+        S (int):シフト幅
+        X (ndarray):複素スペクトル
     Return:
-        output(ndarray):信号
+        output (ndarray):信号
     """
 
     F, T = X.shape  # F:周波数ビン, T:フレームインデックス
