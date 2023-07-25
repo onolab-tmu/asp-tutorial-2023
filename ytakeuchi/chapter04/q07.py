@@ -23,7 +23,8 @@ def frame_split(L, S, x):
 
 def stft(L, S, w, x):
     frames = frame_split(L, S, x)
-    y = np.zeros((len(frames), L // 2 + 1), dtype="complex")  # rfftにより(L/2)+1の配列が返される
+    # rfftにより(L/2)+1の配列が返される
+    y = np.zeros((len(frames), L // 2 + 1), dtype="complex")
     for i in range(len(frames)):
         y[i] = np.fft.rfft(frames[i] * w)
     return y.T
@@ -49,7 +50,7 @@ def istft(S, X):
     x_hat = np.zeros(M, dtype="complex")
     z = np.zeros((T, 2 * (F - 1)), dtype="complex")
     for t in range(T):
-        z[t] = np.fft.irfft(X.T[t])
+        z[t] = np.real(np.fft.irfft(X.T[t]))
     ws = synth_window(S, np.hamming(N))
     n = np.arange(N)
     for t in range(T):
@@ -78,4 +79,5 @@ plt.show()
 ##########確認コード##########
 
 print(len(zero_pad(L, S, x)), len(x_hat))  # ゼロパディングしたものと長さを比較
-print(np.sum(np.square(x_hat[L - S : L - S + len(x)] - x)))  # ISTFTしたものと元の信号の距離を確認（再構成誤差）
+# ISTFTしたものと元の信号の距離を確認（再構成誤差）
+print(np.sum(np.square(x_hat[L - S: L - S + len(x)] - x)))
