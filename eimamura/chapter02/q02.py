@@ -1,6 +1,5 @@
-"""2_2"""
-
 import numpy as np
+
 
 def DFT(x):
     N = len(x)
@@ -9,10 +8,11 @@ def DFT(x):
         x1 = 0
         for n in range(N):
             a = 2 * np.pi * n * k / N
-            x1 += x[n]*np.exp(-1j * a)
-        X.append(x1)    
+            x1 += x[n] * np.exp(-1j * a)
+        X.append(x1)
     return X
 
-x = [1,0,0,0,0,0,0,0]
+
+x = [1, 0, 0, 0, 0, 0, 0, 0]
 X = DFT(x)
 print(X)
