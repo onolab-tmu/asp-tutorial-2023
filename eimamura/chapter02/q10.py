@@ -14,7 +14,6 @@ a = 1
 f = 440
 fs = 16000
 s = 3.0
-
 t = np.arange(0, s, 1 / fs)
 y = a * np.sin(2 * np.pi * f * t)
 
